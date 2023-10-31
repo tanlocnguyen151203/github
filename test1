@@ -1,0 +1,26 @@
+name: Unit Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'  # Chọn phiên bản JDK bạn muốn sử dụng
+
+    - name: Build with Gradle
+      run: |
+        ./gradlew build
+      working-directory: ./your-java-project-directory
+
+    - name: Run Unit Tests
+      run: |
+        ./gradlew test
+      working-directory: ./your-java-project-directory
